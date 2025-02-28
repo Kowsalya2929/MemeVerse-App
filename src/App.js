@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import NavBar from './components/NavBar'
+import NotFound from './pages/NotFound'
+import Home from './pages/Home'
+import Explorer from './pages/Explorer'
+import Upload from './pages/Upload'
+import Profile from './pages/Profile'
+import { Box, createTheme, ThemeProvider } from '@mui/material'
 
-function App() {
+const App = () => {
+
+  const [theme,setTheme] = useState('light')
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: theme
+    }
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+    <ThemeProvider theme={darkTheme}>
+    <Box bgcolor={'background.default'} color={'text.primary'}>
+    <NavBar theme={theme} setTheme={setTheme} />
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/explorer' element={<Explorer />} />
+      <Route path='/upload' element={<Upload />} />
+      <Route path='/profile' element={<Profile />} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
+    </Box>
+    </ThemeProvider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
