@@ -16,7 +16,7 @@ const Home = () => {
   const [memes, setMemes] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [likes, setLikes] = useState({});
-  const [comments, setComments] = useState(0); // Now stores per-meme comments
+  
 
   useEffect(() => {
     const fetchMemes = async () => {
@@ -25,7 +25,7 @@ const Home = () => {
         const data = await res.json();
         setMemes(data.data.memes);
 
-        // Initialize likes and comments per meme
+        // Initialize likes per meme
         const initialLikes = data.data.memes.reduce((acc, meme) => {
           acc[meme.id] = { count: 0, liked: false };
           return acc;
@@ -123,7 +123,7 @@ const Home = () => {
               <IconButton sx={{ color: "green" }}>
                 <Chat />
               </IconButton>
-              <Typography variant="body2">{comments}</Typography>
+              <Typography variant="body2">0</Typography>
             </Box>
 
             {/* Share Button */}
