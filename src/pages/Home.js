@@ -72,9 +72,7 @@ const Home = () => {
 
   const handleShare = () => {
     const currentMeme = memes[currentIndex];
-    const shareText = `🔥 ${currentMeme.name} 🔥\n❤️ Likes: ${likes[currentMeme.id]?.count || 0} 💬 Comments: ${
-      comments
-    }\n😂 Check it out here: ${currentMeme.url}`;
+    const shareText = `🔥 ${currentMeme.name} 🔥\n❤️ Likes: ${likes[currentMeme.id]?.count || 0} 💬 Comments:0 \n😂 Check it out here: ${currentMeme.url}`;
     const shareUrl = encodeURIComponent(currentMeme.url);
     const text = encodeURIComponent(shareText);
     window.open(`https://www.addtoany.com/share#url=${shareUrl}&title=${text}`, "_blank", "width=800,height=600");
